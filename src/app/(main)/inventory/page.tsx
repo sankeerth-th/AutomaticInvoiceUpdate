@@ -14,4 +14,8 @@ export default function InventoryPage() {
         </CardHeader>
         <CardContent>
           <InventoryTable />
-        </CardContent
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

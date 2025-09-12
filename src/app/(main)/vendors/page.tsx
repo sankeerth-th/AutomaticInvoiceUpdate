@@ -16,3 +16,10 @@ export default function VendorsPage() {
             <h2 className="mt-4 text-xl font-semibold">Vendor Rules Editor</h2>
             <p className="mt-2 text-muted-foreground">
               Define vendor rules, normalization settings, and POS field mappings here.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
