@@ -2,7 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { ChartTooltipContent } from '../ui/chart';
+import { ChartContainer, ChartTooltipContent, type ChartConfig } from '../ui/chart';
 
 const inventoryTrendData = [
   { date: 'Jan', value: 86000 },
@@ -20,6 +20,18 @@ const vendorFrequencyData = [
     { vendor: "Other", deliveries: 8 },
 ]
 
+const chartConfig = {
+  value: {
+    label: 'Inventory Value',
+    color: 'hsl(var(--primary))',
+  },
+  deliveries: {
+    label: 'Deliveries',
+    color: 'hsl(var(--primary))',
+  },
+} satisfies ChartConfig;
+
+
 export function DashboardCharts() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
@@ -29,7 +41,7 @@ export function DashboardCharts() {
         </CardHeader>
         <CardContent>
           <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
+            <ChartContainer config={chartConfig}>
               <LineChart data={inventoryTrendData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="date" />
@@ -39,7 +51,7 @@ export function DashboardCharts() {
                 />
                 <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} />
               </LineChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </div>
         </CardContent>
       </Card>
@@ -49,7 +61,7 @@ export function DashboardCharts() {
         </CardHeader>
         <CardContent>
           <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ChartContainer config={chartConfig}>
           <BarChart data={vendorFrequencyData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis dataKey="vendor" />
@@ -60,7 +72,7 @@ export function DashboardCharts() {
             />
             <Bar dataKey="deliveries" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
           </BarChart>
-        </ResponsiveContainer>
+        </ChartContainer>
           </div>
         </CardContent>
       </Card>
